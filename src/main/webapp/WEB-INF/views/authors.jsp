@@ -33,6 +33,7 @@
         <ul>
             <li><a href="http://localhost:8080/demo/users">List of users</a></li>
             <li><a href="http://localhost:8080/demo/books">List of books</a></li>
+            <li><a href="http://localhost:8080/demo/books/rental"> List of rentals </a></li>
         </ul>
         <table>
             <tr>

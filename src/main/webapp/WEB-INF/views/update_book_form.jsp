@@ -36,6 +36,7 @@
             <li><a href="http://localhost:8080/demo/users">List of users</a></li>
             <li><a href="http://localhost:8080/demo/books">List of books</a></li>
             <li><a href="http://localhost:8080/demo/authors">List of authors</a></li>
+            <li><a href="http://localhost:8080/demo/books/rental"> List of rentals </a></li>
         </ul>
             <label>Title</label> <input id="title" type="text" value = "${book.title}"/>
             <label> Author </label>

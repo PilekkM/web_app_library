@@ -25,21 +25,12 @@
                     window.alert(title_input + " deleted!");
                     location.reload();
                 }
-
-                function update(id_input)
-                {
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("POST", "http://localhost:8080/demo/books/update", true);
-                    xhr.setRequestHeader('Content-Type', 'application/json');
-                    xhr.send(JSON.stringify({
-                        'id': id_input
-                    }));
-                }
     </script>
     <body>
         <ul>
             <li><a href="http://localhost:8080/demo/authors">List of authors</a></li>
             <li><a href="http://localhost:8080/demo/users">List of users</a></li>
+            <li><a href="http://localhost:8080/demo/books/rental"> List of rentals </a></li>
         </ul>
         <table>
             <tr>
