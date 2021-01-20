@@ -6,9 +6,11 @@ import com.example.practice.services.BookService;
 import com.example.practice.services.RentedBookService;
 import com.example.practice.services.UserService;
 import org.dom4j.rule.Mode;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,6 +56,21 @@ public class RentedBookController {
         rentedBook.setUser(userService.getUserById(userId));
         rentedBook.setReturnDate(new Date(System.currentTimeMillis() + 604800000));
         service.addRentedBook(rentedBook);
+
+        model.addObject("rented_books", service.getRentedBooks());
+        model.setViewName("rented_books");
+
+        return model;
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ModelAndView deleteBookRental(@RequestBody String body, ModelAndView model){
+        JSONObject jsonObject = new JSONObject(body);
+        RentedBook rentedBook = new RentedBook();
+        rentedBook.setBook(bookService.getBookById(jsonObject.getInt("book_id")));
+        rentedBook.setUser(userService.getUserById(jsonObject.getInt("user_id")));
+        rentedBook.setId(jsonObject.getInt("id"));
+        service.deleteRentedBook(rentedBook);
 
         model.addObject("rented_books", service.getRentedBooks());
         model.setViewName("rented_books");

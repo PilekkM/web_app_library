@@ -11,22 +11,22 @@
         }
     </style>
     <script type="text/javascript">
-            function submitform(id_input,name_input,surname_input, age_input, personal_id_input)
-            {
-                var xhr = new XMLHttpRequest();
-                xhr.open("DELETE", "http://localhost:8080/demo/users", true);
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.send(JSON.stringify({
-                    'id': id_input,
-                    'name': name_input,
-                    'surname': surname_input,
-                    'age': age_input,
-                    'personal_id': personal_id_input
-                }));
-                window.alert(name_input + " deleted!");
-                location.reload();
-            }
-        </script>
+        function submitform(id_input,name_input,surname_input, age_input, personal_id_input)
+        {
+            var xhr = new XMLHttpRequest();
+            xhr.open("DELETE", "http://localhost:8080/demo/users", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                'id': id_input,
+                'name': name_input,
+                'surname': surname_input,
+                'age': age_input,
+                'personal_id': personal_id_input
+            }));
+            window.alert(name_input + " deleted!");
+            location.reload();
+        }
+    </script>
     <head>
         <title>List of users</title>
     </head>

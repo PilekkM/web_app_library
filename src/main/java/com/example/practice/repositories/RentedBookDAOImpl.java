@@ -19,6 +19,12 @@ public class RentedBookDAOImpl implements RentedBookDAO {
     }
 
     @Override
+    public RentedBook getRentedBookById(int rentedBookId) {
+        RentedBook rentedBook = sessionFactory.getCurrentSession().get(RentedBook.class, rentedBookId);
+        return rentedBook;
+    }
+
+    @Override
     public Integer addRentedBook(RentedBook rentedBook) {
         Integer id;
         try{
@@ -29,5 +35,17 @@ public class RentedBookDAOImpl implements RentedBookDAO {
         }
 
         return id;
+    }
+
+    @Override
+    public boolean deleteRentedBook(int rentedBookId) {
+        try{
+            RentedBook rentedBook = getRentedBookById(rentedBookId);
+            sessionFactory.getCurrentSession().delete(rentedBook);
+        }catch (HibernateException e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

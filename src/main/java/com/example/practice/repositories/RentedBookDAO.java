@@ -8,6 +8,9 @@ public interface RentedBookDAO {
 
     public List<RentedBook> getRentedBooks();
 
+    public RentedBook getRentedBookById(int rentedBookId);
+
     public Integer addRentedBook(RentedBook rentedBook);
 
+    public boolean deleteRentedBook(int rentedBookId);
 }

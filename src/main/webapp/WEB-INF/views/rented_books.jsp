@@ -10,6 +10,22 @@
             padding: 10px;
         }
     </style>
+    <script type="text/javascript">
+        function submitform(id_input, book_id_input, user_id_input, return_date)
+        {
+            var xhr = new XMLHttpRequest();
+            xhr.open("DELETE", "http://localhost:8080/demo/books/rental", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                'id': id_input,
+                'book_id': book_id_input,
+                'user_id': user_id_input,
+                'return_date': return_date
+            }));
+            window.alert("Rental deleted!");
+            location.reload();
+        }
+    </script>
     <head>
         <title>List of books rental</title>
     </head>
@@ -32,6 +48,7 @@
                     <td>${rent_book.book.title}</td>
                     <td>${rent_book.book.author.names} ${rent_book.book.author.surname}</td>
                     <td>${rent_book.returnDate}</td>
+                    <td><a href="javascript:submitform(${rent_book.id}, ${rent_book.book.id}, ${rent_book.user.id})"> Delete </a></td>
                 </tr>
             </c:forEach>
         </table>

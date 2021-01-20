@@ -21,7 +21,15 @@ public class RentedBookService {
         return repository.getRentedBooks();
     }
 
+    public RentedBook getRentedBookById(int rentedBookId){
+        return repository.getRentedBookById(rentedBookId);
+    }
+
     public Integer addRentedBook(RentedBook rentedBook){
         return repository.addRentedBook(rentedBook);
+    }
+
+    public boolean deleteRentedBook(RentedBook rentedBook){
+        return repository.deleteRentedBook(rentedBook.getId());
     }
 }
