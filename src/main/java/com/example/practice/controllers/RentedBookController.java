@@ -1,15 +1,14 @@
 package com.example.practice.controllers;
 
+import com.example.practice.entities.Book;
 import com.example.practice.entities.RentedBook;
-import com.example.practice.services.AuthorService;
 import com.example.practice.services.BookService;
 import com.example.practice.services.RentedBookService;
 import com.example.practice.services.UserService;
-import org.dom4j.rule.Mode;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,14 +50,25 @@ public class RentedBookController {
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public ModelAndView addBookRental(@RequestParam(value = "user_id") int userId, @RequestParam(value = "book_id") int bookId, ModelAndView model){
-        RentedBook rentedBook = new RentedBook();
-        rentedBook.setBook(bookService.getBookById(bookId));
-        rentedBook.setUser(userService.getUserById(userId));
-        rentedBook.setReturnDate(new Date(System.currentTimeMillis() + 604800000));
-        service.addRentedBook(rentedBook);
+        Book book = bookService.getBookById(bookId);
+        if(book.getQuantity() > 0){
+            book.setQuantity(book.getQuantity()-1);
+            book.setInRental(book.getInRental()+1);
+            RentedBook rentedBook = new RentedBook();
+            rentedBook.setBook(book);
+            rentedBook.setUser(userService.getUserById(userId));
+            rentedBook.setReturnDate(new Date(System.currentTimeMillis() + 604800000));
+            if(service.addRentedBook(rentedBook) > 0) {
+                bookService.updateBook(book);
+            }
 
-        model.addObject("rented_books", service.getRentedBooks());
-        model.setViewName("rented_books");
+
+            model.addObject("rented_books", service.getRentedBooks());
+            model.setViewName("rented_books");
+        }else{
+            model.setStatus(HttpStatus.NOT_ACCEPTABLE);
+        }
+
 
         return model;
     }
@@ -66,11 +76,16 @@ public class RentedBookController {
     @RequestMapping(method = RequestMethod.DELETE)
     public ModelAndView deleteBookRental(@RequestBody String body, ModelAndView model){
         JSONObject jsonObject = new JSONObject(body);
+        Book book = bookService.getBookById(jsonObject.getInt("book_id"));
         RentedBook rentedBook = new RentedBook();
-        rentedBook.setBook(bookService.getBookById(jsonObject.getInt("book_id")));
+        rentedBook.setBook(book);
         rentedBook.setUser(userService.getUserById(jsonObject.getInt("user_id")));
         rentedBook.setId(jsonObject.getInt("id"));
-        service.deleteRentedBook(rentedBook);
+        if(service.deleteRentedBook(rentedBook)){
+            book.setInRental(book.getInRental()-1);
+            book.setQuantity(book.getQuantity()+1);
+            bookService.updateBook(book);
+        }
 
         model.addObject("rented_books", service.getRentedBooks());
         model.setViewName("rented_books");

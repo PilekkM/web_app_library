@@ -5,13 +5,14 @@ import com.example.practice.entities.Book;
 import java.util.List;
 
 public interface BookDAO {
-    public List<Book> getBooks();
 
-    public Book getBookById(int id);
+    List<Book> getBooks();
 
-    public Integer addBook(Book book);
+    Book getBookById(int bookId);
 
-    public boolean deleteBook(int id);
+    Integer addBook(Book book);
 
-    public boolean updateBook(Book book);
+    boolean deleteBook(int bookId);
+
+    boolean updateBook(Book book);
 }

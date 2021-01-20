@@ -15,11 +15,12 @@
     </head>
 
     <body>
+    <center>
         <ul>
-            <li><a href="http://localhost:8080/demo/users">List of users</a></li>
-            <li><a href="http://localhost:8080/demo/books">List of books</a></li>
-            <li><a href="http://localhost:8080/demo/authors">List of authors</a></li>
-            <li><a href="http://localhost:8080/demo/books/rental"> List of rentals </a></li>
+            <li><a href="http://localhost:8080/users">List of users</a></li>
+            <li><a href="http://localhost:8080/books">List of books</a></li>
+            <li><a href="http://localhost:8080/authors">List of authors</a></li>
+            <li><a href="http://localhost:8080/books/rental"> List of rentals </a></li>
         </ul>
         <form action="new" method="post">
             <label>Title</label> <input type="text" name="title"/>
@@ -33,5 +34,6 @@
             <label> In rental </label> <input type="number" name="in_rental"/>
             <input type="submit" value="Add book">
         </form>
+        </center>
     </body>
 </html>

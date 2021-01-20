@@ -17,14 +17,12 @@ public class AuthorDAOImpl implements AuthorDAO{
 
     @Override
     public List<Author> getAuthors() {
-        List<Author> authors = sessionFactory.getCurrentSession().createQuery("from Author").list();
-        return authors;
+        return (List<Author>) sessionFactory.getCurrentSession().createQuery("from Author").list();
     }
 
     @Override
     public Author getAuthorById(int id) {
-        Author author = sessionFactory.getCurrentSession().get(Author.class, id);
-        return author;
+        return sessionFactory.getCurrentSession().get(Author.class, id);
     }
 
     @Override

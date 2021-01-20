@@ -14,14 +14,12 @@ public class RentedBookDAOImpl implements RentedBookDAO {
 
     @Override
     public List<RentedBook> getRentedBooks() {
-        List<RentedBook> rentedBooks = sessionFactory.getCurrentSession().createQuery("from RentedBook").list();
-        return rentedBooks;
+        return (List<RentedBook>) sessionFactory.getCurrentSession().createQuery("from RentedBook").list();
     }
 
     @Override
     public RentedBook getRentedBookById(int rentedBookId) {
-        RentedBook rentedBook = sessionFactory.getCurrentSession().get(RentedBook.class, rentedBookId);
-        return rentedBook;
+        return sessionFactory.getCurrentSession().get(RentedBook.class, rentedBookId);
     }
 
     @Override

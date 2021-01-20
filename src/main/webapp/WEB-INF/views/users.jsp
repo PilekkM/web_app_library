@@ -14,7 +14,7 @@
         function submitform(id_input,name_input,surname_input, age_input, personal_id_input)
         {
             var xhr = new XMLHttpRequest();
-            xhr.open("DELETE", "http://localhost:8080/demo/users", true);
+            xhr.open("DELETE", "http://localhost:8080/users", true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify({
                 'id': id_input,
@@ -32,10 +32,11 @@
     </head>
 
     <body>
+        <center>
         <ul>
-            <li><a href="http://localhost:8080/demo/authors">List of authors</a></li>
-            <li><a href="http://localhost:8080/demo/books">List of books</a></li>
-            <li><a href="http://localhost:8080/demo/books/rental"> List of rentals </a></li>
+            <li><a href="http://localhost:8080/authors">List of authors</a></li>
+            <li><a href="http://localhost:8080/books">List of books</a></li>
+            <li><a href="http://localhost:8080/books/rental"> List of rentals </a></li>
         </ul>
         <table>
             <tr>
@@ -51,10 +52,11 @@
                     <td>${user.personalId}</td>
                     <td>${user.age}</td>
                     <td><a href="javascript:submitform(${user.id}, '${user.name}', '${user.surname}', ${user.age}, '${user.personalId}')"> Delete </a></td>
-                    <td><a href="http://localhost:8080/demo/users/update/${user.id}"> Update </a></td>
+                    <td><a href="http://localhost:8080/users/update/${user.id}"> Update </a></td>
                 </tr>
             </c:forEach>
         </table>
-        <a href="http://localhost:8080/demo/users/new"> Add new user </a>
+        <a href="http://localhost:8080/users/new"> Add new user </a>
+        </center>
     </body>
 </html>

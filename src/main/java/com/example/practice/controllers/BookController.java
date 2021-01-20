@@ -29,7 +29,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/new")
-    public ModelAndView newBook(ModelAndView model){
+    public ModelAndView prepareAddBook(ModelAndView model){
         model.addObject("authors", authorService.getAuthors());
         model.setViewName("add_book_form");
         return model;

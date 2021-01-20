@@ -13,9 +13,13 @@ import java.util.List;
 @Transactional
 public class RentedBookService {
 
-    @Autowired
-    @Qualifier("rentedBookDAO")
     private RentedBookDAO repository;
+
+    @Autowired
+    @Qualifier("rentedBookDAOImpl")
+    public void setRentedBookDAO(RentedBookDAO dao){
+        this.repository = dao;
+    }
 
     public List<RentedBook> getRentedBooks(){
         return repository.getRentedBooks();

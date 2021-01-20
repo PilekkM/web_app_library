@@ -2,10 +2,8 @@ package com.example.practice.controllers;
 
 import com.example.practice.entities.User;
 import com.example.practice.services.UserService;
-import org.dom4j.rule.Mode;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,7 +37,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/new")
-    public String newUser(){
+    public String prepareAddUser(){
         return "add_user_form";
     }
 

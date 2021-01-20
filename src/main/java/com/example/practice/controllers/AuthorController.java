@@ -3,6 +3,7 @@ package com.example.practice.controllers;
 import com.example.practice.entities.Author;
 import com.example.practice.services.AuthorService;
 import org.json.JSONObject;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,7 +37,7 @@ public class AuthorController {
     }
 
     @RequestMapping(value="/new",method = RequestMethod.GET)
-    public ModelAndView newAuthor(ModelAndView model){
+    public ModelAndView prepareAddAuthor(ModelAndView model){
         model.setViewName("add_author_form");
         return model;
     }
@@ -62,13 +63,8 @@ public class AuthorController {
         return model;
     }
 
-    @RequestMapping(method=RequestMethod.PUT)
-    public ModelAndView updateAuthor(@RequestBody String body, ModelAndView model){
-        JSONObject jsonObject = new JSONObject(body);
-        Author author = new Author();
-        author.setId(jsonObject.getInt("authorId"));
-        author.setNames(jsonObject.getString("names"));
-        author.setSurname(jsonObject.getString("surname"));
+    @RequestMapping(method=RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ModelAndView updateAuthor(@RequestBody Author author, ModelAndView model){
         service.updateAuthor(author);
 
         model.addObject("authors", service.getAuthors());

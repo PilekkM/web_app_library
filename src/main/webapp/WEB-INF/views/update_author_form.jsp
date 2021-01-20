@@ -5,15 +5,15 @@
     <script>
         function update(){
             let xhr = new XMLHttpRequest();
-            xhr.open("PUT", "http://localhost:8080/demo/authors/",true);
+            xhr.open("PUT", "http://localhost:8080/authors/",true);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send(JSON.stringify({
                 "names":document.getElementById("names").value,
-                "authorId":document.getElementById("author_id").value,
+                "id":document.getElementById("author_id").value,
                 "surname":document.getElementById("surname").value,
             }));
             xhr.onload=function(){
-                window.location.href = "http://localhost:8080/demo/authors";
+                window.location.href = "http://localhost:8080/authors";
             };
         }
     </script>
@@ -22,17 +22,17 @@
     </head>
 
     <body>
+        <center>
         <ul>
-            <li><a href="http://localhost:8080/demo/users">List of users</a></li>
-            <li><a href="http://localhost:8080/demo/books">List of books</a></li>
-            <li><a href="http://localhost:8080/demo/authors">List of authors</a></li>
-            <li><a href="http://localhost:8080/demo/books/rental"> List of rentals </a></li>
+            <li><a href="http://localhost:8080/users">List of users</a></li>
+            <li><a href="http://localhost:8080/books">List of books</a></li>
+            <li><a href="http://localhost:8080/authors">List of authors</a></li>
+            <li><a href="http://localhost:8080/books/rental"> List of rentals </a></li>
         </ul>
-            <label> Names </label> <input id="names" type="text" value = "${author.names}" />
-            <label> Surname </label> <input id="surname" type="text" value="${author.surname}" />
-            <input id="author_id" type="hidden" value=${author.id} />
-            <button onclick="update()"> Update author </button>
-
-
+        <label> Names </label> <input id="names" type="text" value = "${author.names}" />
+        <label> Surname </label> <input id="surname" type="text" value="${author.surname}" />
+        <input id="author_id" type="hidden" value=${author.id} />
+        <button onclick="update()"> Update author </button>
+        </center>
     </body>
 </html>

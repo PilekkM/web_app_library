@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface RentedBookDAO {
 
-    public List<RentedBook> getRentedBooks();
+    List<RentedBook> getRentedBooks();
 
-    public RentedBook getRentedBookById(int rentedBookId);
+    RentedBook getRentedBookById(int rentedBookId);
 
-    public Integer addRentedBook(RentedBook rentedBook);
+    Integer addRentedBook(RentedBook rentedBook);
 
-    public boolean deleteRentedBook(int rentedBookId);
+    boolean deleteRentedBook(int rentedBookId);
 }

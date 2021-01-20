@@ -47,10 +47,9 @@ public class RootConfig{
     }
 
     @Bean
-    public RentedBookDAO rentedBookDAO(){
+    public RentedBookDAO rentedBookDAOImpl(){
         return new RentedBookDAOImpl();
     }
-
 
     @Bean
     public DataSourceManager dataSourceManager(){

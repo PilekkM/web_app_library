@@ -27,6 +27,10 @@ public class Author {
 
     private String surname;
 
+    public Author(){
+
+    }
+
     public int getId() {
         return id;
     }

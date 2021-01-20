@@ -17,14 +17,12 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public List<User> getUsers() {
-        List<User> users = sessionFactory.getCurrentSession().createQuery("from User").list();
-        return users;
+        return (List<User>) sessionFactory.getCurrentSession().createQuery("from User").list();
     }
 
     @Override
     public User getUserById(int userId) {
-        User user = sessionFactory.getCurrentSession().get(User.class, userId);
-        return user;
+        return sessionFactory.getCurrentSession().get(User.class, userId);
     }
 
     @Override

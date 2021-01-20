@@ -14,7 +14,7 @@
         function submitform(id_input, book_id_input, user_id_input, return_date)
         {
             var xhr = new XMLHttpRequest();
-            xhr.open("DELETE", "http://localhost:8080/demo/books/rental", true);
+            xhr.open("DELETE", "http://localhost:8080/books/rental", true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify({
                 'id': id_input,
@@ -30,10 +30,11 @@
         <title>List of books rental</title>
     </head>
     <body>
+        <center>
         <ul>
-            <li><a href="http://localhost:8080/demo/authors">List of authors</a></li>
-            <li><a href="http://localhost:8080/demo/users">List of users</a></li>
-            <li><a href="http://localhost:8080/demo/books">List of books</a></li>
+            <li><a href="http://localhost:8080/authors">List of authors</a></li>
+            <li><a href="http://localhost:8080/users">List of users</a></li>
+            <li><a href="http://localhost:8080/books">List of books</a></li>
         </ul>
         <table>
             <tr>
@@ -52,6 +53,7 @@
                 </tr>
             </c:forEach>
         </table>
-        <a href="http://localhost:8080/demo/books/rental/new"> Rent a book </a>
+        <a href="http://localhost:8080/books/rental/new"> Rent a book </a>
+        </center>
     </body>
 </html>

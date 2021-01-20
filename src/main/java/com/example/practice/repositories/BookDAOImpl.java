@@ -2,7 +2,6 @@ package com.example.practice.repositories;
 
 import com.example.practice.entities.Book;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,16 +16,13 @@ public class BookDAOImpl implements BookDAO{
 
     @Override
     public List<Book> getBooks() {
-        Session session = this.sessionFactory.getCurrentSession();
 
-        List<Book> books = session.createQuery("from Book").list();
-        return books;
+        return (List<Book>) sessionFactory.getCurrentSession().createQuery("from Book order by title").list();
     }
 
     @Override
     public Book getBookById(int id) {
-        Book book = sessionFactory.getCurrentSession().get(Book.class, id);
-        return book;
+        return sessionFactory.getCurrentSession().get(Book.class, id);
     }
 
     @Override
@@ -60,6 +56,7 @@ public class BookDAOImpl implements BookDAO{
             dbBook.setTitle(book.getTitle());
             dbBook.setAuthor(book.getAuthor());
             dbBook.setQuantity(book.getQuantity());
+            dbBook.setInRental(book.getInRental());
             sessionFactory.getCurrentSession().update(dbBook);
         }catch (HibernateException e){
             e.printStackTrace();
